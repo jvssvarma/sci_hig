@@ -1,7 +1,8 @@
 class RequestsController < ApplicationController
-  before_action :find_request, only: [:show, :edit, :update, :destroy]
+  before_action :find_request, only: [:show]
 
   def index
+    @requests = Request.all
   end
 
   def new

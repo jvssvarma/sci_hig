@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe 'navigation' do
+  before do
+    user = User.create(id: 1, email: 'checking@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'john', last_name: 'doe')
+    login_as(user, :scope => :user)
+  end
+
   describe 'requests index' do
     it "has content" do
       visit requests_path
@@ -10,8 +15,6 @@ describe 'navigation' do
 
   describe "adding requests" do
     before do
-      user = User.create(id: 1, email: 'checking@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'john', last_name: 'doe')
-      login_as(user, :scope => :user)
       visit new_request_path
     end
 
