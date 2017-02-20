@@ -6,9 +6,9 @@ RSpec.describe Request, type: :model do
       @request = Request.create(date: Date.today, reason: "It's really Something")
     end
 
-    it 'can create a request' do
-      expect(@request).to be_valid
-    end
+    # it 'can create a request' do
+    #   expect(@request).to be_valid
+    # end
 
     it 'cannot be created without date and reason' do
       @request.date = nil
