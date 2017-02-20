@@ -6,11 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+@user1 = User.create(email: 'checking1@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'John', last_name: 'Doe')
+@user2 = User.create(email: 'checking2@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'Jane', last_name: 'Mara')
+puts "users created"
+
 20.times do |request|
-  Request.create!(date: Date.today, reason: " #{request} sample data set 1.")
-  Request.create!(date: Date.tomorrow, reason: " #{request} sample data set 2.")
-  Request.create!(date: Date.today+2, reason: " #{request} sample data set 3.")
-  Request.create!(date: Date.tomorrow+2, reason: " #{request} sample data set 4")
+  Request.create!(date: Date.today, reason: " #{request} sample data set 1.", user_id: @user1.id)
+  Request.create!(date: Date.tomorrow, reason: " #{request} sample data set 2.", user_id: @user1.id)
+  Request.create!(date: Date.today+2, reason: " #{request} sample data set 3.", user_id: @user2.id)
+  Request.create!(date: Date.tomorrow+2, reason: " #{request} sample data set 4", user_id: @user2.id)
 end
 
 puts "80 sample data requests created"

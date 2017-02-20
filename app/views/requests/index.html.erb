@@ -1,5 +1,23 @@
 <h1>All Requests</h1>
 
-<% @requests.each do |request| %>
-  <%= request.inspect %>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        User
+      </th>
+      <th>
+        Reason
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @requests %>
+  </tbody>
+</table>

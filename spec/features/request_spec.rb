@@ -2,14 +2,21 @@ require 'rails_helper'
 
 describe 'navigation' do
   before do
-    user = User.create(id: 1, email: 'checking@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'john', last_name: 'doe')
-    login_as(user, :scope => :user)
+    @user = User.create(id: 1, email: 'checking@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'john', last_name: 'doe')
+    login_as(@user, :scope => :user)
   end
 
   describe 'requests index' do
     it "has content" do
       visit requests_path
       expect(page).to have_content(/Requests/)
+    end
+
+    it "has a list of all requests" do
+      request1 = Request.create(date: Date.today, reason: 'Request1', user_id: @user.id)
+      request2 = Request.create(date: Date.today, reason: 'Request2', user_id: @user.id)
+      visit requests_path
+      expect(page).to have_content(/Request1|Request2/)
     end
   end
 
