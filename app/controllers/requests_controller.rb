@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :find_request, only: [:show, :edit, :update]
+  before_action :find_request, only: [:show, :edit, :update, :destroy]
 
   def index
     @requests = Request.all
@@ -31,6 +31,11 @@ class RequestsController < ApplicationController
     else
       render 'update', notice: "Something went wrong. Please try again"
     end
+  end
+
+  def destroy
+    @request.destroy
+    redirect_to requests_path, notice: "Request deleted successfully"
   end
 
   private

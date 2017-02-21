@@ -60,14 +60,24 @@ describe 'navigation' do
 
       expect(page).to have_content("Reason is Edited")
     end
+  end
 
-    describe "creating new requests from home path" do
-      it "using link to new requests" do
-        visit root_path
+  describe "creating new requests from home path" do
+    it "using link to new requests" do
+      visit root_path
 
-        click_link("Add Request")
-        expect(page.status_code).to eq(200)
-      end
+      click_link("Add Request")
+      expect(page.status_code).to eq(200)
+    end
+  end
+
+  describe "deleting requests" do
+    it "can delete requests" do
+      @request = FactoryGirl.create(:request)
+      visit requests_path
+
+      click_link("delete_request_#{@request.id}")
+      expect(page.status_code).to eq(200)
     end
   end
 end
