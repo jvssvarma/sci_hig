@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'navigation' do
   before do
-    @user = User.create(id: 1, email: 'checking@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'john', last_name: 'doe')
+    @user = FactoryGirl.create(:user)
     login_as(@user, :scope => :user)
   end
 
@@ -13,10 +13,10 @@ describe 'navigation' do
     end
 
     it "has a list of all requests" do
-      request1 = Request.create(date: Date.today, reason: 'Request1', user_id: @user.id)
-      request2 = Request.create(date: Date.today, reason: 'Request2', user_id: @user.id)
+      request1 = FactoryGirl.create(:request)
+      request2 = FactoryGirl.create(:another_request)
       visit requests_path
-      expect(page).to have_content(/Request1|Request2/)
+      expect(page).to have_content(/excuse/)
     end
   end
 
@@ -39,6 +39,26 @@ describe 'navigation' do
       click_on "Save"
 
       expect(User.last.requests.last.reason).to eq("User Association")
+    end
+  end
+
+  describe "editing requests" do
+    before do
+      @request = FactoryGirl.create(:request)
+    end
+    it "is accessible from the index page" do
+      visit requests_path
+      click_link("edit_#{@request.id}")
+      expect(page.status_code).to eq(200)
+    end
+
+    it "is editable" do
+      visit edit_request_path(@request)
+      fill_in 'request[date]', with: Date.today
+      fill_in 'request[reason]', with: "Reason is Edited"
+      click_on "Save"
+
+      expect(page).to have_content("Reason is Edited")
     end
   end
 end

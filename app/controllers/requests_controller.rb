@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :find_request, only: [:show]
+  before_action :find_request, only: [:show, :edit, :update]
 
   def index
     @requests = Request.all
@@ -20,6 +20,17 @@ class RequestsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @request.update request_params
+      redirect_to @request, notice: "Your request is update successfully"
+    else
+      render 'update', notice: "Something went wrong. Please try again"
+    end
   end
 
   private

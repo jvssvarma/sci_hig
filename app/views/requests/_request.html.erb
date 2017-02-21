@@ -11,4 +11,7 @@
   <td>
     <%= truncate(request.reason) %>
   </td>
+  <td>
+    <%= link_to 'Edit', edit_request_path(request), id: "edit_#{request.id}" %>
+  </td>
 </tr>
