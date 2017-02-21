@@ -6,7 +6,7 @@ describe 'navigation' do
     login_as(@user, :scope => :user)
   end
 
-  describe 'requests index' do
+  describe "requests index" do
     it "has content" do
       visit requests_path
       expect(page).to have_content(/Requests/)
@@ -59,6 +59,15 @@ describe 'navigation' do
       click_on "Save"
 
       expect(page).to have_content("Reason is Edited")
+    end
+
+    describe "creating new requests from home path" do
+      it "using link to new requests" do
+        visit root_path
+
+        click_link("Add Request")
+        expect(page.status_code).to eq(200)
+      end
     end
   end
 end
