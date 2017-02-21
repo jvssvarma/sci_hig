@@ -1,5 +1,11 @@
 <%= form_for @request, class: "form-horizontal" do |f| %>
 
+  <% if @request.errors.any? %>
+    <% @request.errors.full_messages do |msg| %>
+      <%= js add_gritter(msg, title: "HIG App Notification", sticky: false) %>
+    <% end %>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :date, class: "col-sm-2 control-label" %>
     <%= f.date_field :date, class: "form-control" %>
