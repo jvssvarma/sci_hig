@@ -28,7 +28,7 @@ describe 'navigation' do
     it "should be able to fill form for request" do
       fill_in 'request[date]', with: Date.today
       fill_in 'request[reason]', with: "Reason for request"
-      click_on "Save"
+      click_on "Submit"
 
       expect(page).to have_content("Reason for request")
     end
@@ -36,7 +36,7 @@ describe 'navigation' do
     it "must have a user associated" do
       fill_in 'request[date]', with: Date.today
       fill_in 'request[reason]', with: "User Association"
-      click_on "Save"
+      click_on "Submit"
 
       expect(User.last.requests.last.reason).to eq("User Association")
     end
@@ -56,7 +56,7 @@ describe 'navigation' do
       visit edit_request_path(@request)
       fill_in 'request[date]', with: Date.today
       fill_in 'request[reason]', with: "Reason is Edited"
-      click_on "Save"
+      click_on "Submit"
 
       expect(page).to have_content("Reason is Edited")
     end
