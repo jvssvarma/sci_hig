@@ -2,28 +2,31 @@
   <h1>HIG EOM</h1>
 </div>
 
-<ul class="custom-nav nav nav-tabs">
-  <li class="<%= active?(root_path) %>">
-    <a href="/">Home</a>
-  </li>
-  <li class="<%= active?(requests_path) %>">
-    <a href="/requests">Request Entries</a>
-  </li>
-  <li class="<%= active?(new_request_path) %>">
-    <a href="/requests/new">Add Request</a>
-  </li>
-  <li class="dropdown pull-right">
-     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Account<strong class="caret"></strong></a>
-    <ul class="dropdown-menu">
-      <li>
-        <%= link_to 'Admin Dashboard', root_path %>
-      </li>
-      <li>
-      <li class="divider">
-      </li>
-      <li>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-      </li>
-    </ul>
-  </li>
-</ul>
+<% if current_user %>
+  <ul class="custom-nav nav nav-tabs">
+    <li class="<%= active?(root_path) %>">
+      <a href="/">Home</a>
+    </li>
+    <li class="<%= active?(requests_path) %>">
+      <a href="/requests">Request Entries</a>
+    </li>
+    <li class="<%= active?(new_request_path) %>">
+      <a href="/requests/new">Add Request</a>
+    </li>
+    <li class="dropdown pull-right">
+       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
+      <ul class="dropdown-menu">
+        <% if current_user.try(:type) == "AdminUser" %>
+          <li>
+            <%= link_to 'Admin Dashboard', admin_root_path %>
+          </li>
+          <li class="divider">
+          </li>
+        <% end %>
+        <li>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+<% end %>
