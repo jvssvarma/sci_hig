@@ -8,7 +8,9 @@
 
 @user1 = User.create(email: 'checking1@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'John', last_name: 'Doe')
 @user2 = User.create(email: 'checking2@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'Jane', last_name: 'Mara')
-puts "users created"
+AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser', first_name: 'Darshan', last_name: 'Patel')
+
+puts "Admin and test users created"
 
 20.times do |request|
   Request.create!(date: Date.today, reason: " #{request} sample data set 1.", user_id: @user1.id)

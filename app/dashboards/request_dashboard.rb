@@ -14,6 +14,7 @@ class RequestDashboard < Administrate::BaseDashboard
     reason: Field::Text.with_options(searchable: true),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
+    status: Field::Select.with_options(collection: Request.statuses.keys),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,12 +26,14 @@ class RequestDashboard < Administrate::BaseDashboard
     :user,
     :date,
     :reason,
+    :status,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :user,
+    :status,
     :id,
     :date,
     :reason,
@@ -45,6 +48,7 @@ class RequestDashboard < Administrate::BaseDashboard
     :user,
     :date,
     :reason,
+    :status,
   ].freeze
 
   # Overwrite this method to customize how requests are displayed
