@@ -44,21 +44,27 @@ describe 'navigation' do
 
   describe "editing requests" do
     before do
-      @request = FactoryGirl.create(:request)
-    end
-    it "is accessible from the index page" do
-      visit requests_path
-      click_link("edit_#{@request.id}")
-      expect(page.status_code).to eq(200)
+      @edit_user = User.create(first_name: "John", last_name: "Test", email: "johntest@test.com", password: "checking", password_confirmation: "checking")
+      login_as(@edit_user, :scope => :user)
+      @edit_request = Request.create(date: Date.tomorrow, reason: "Authorization test", user_id: @edit_user.id)
     end
 
     it "is editable" do
-      visit edit_request_path(@request)
+      visit edit_request_path(@edit_request)
       fill_in 'request[date]', with: Date.today
       fill_in 'request[reason]', with: "Reason is Edited"
       click_on "Submit"
 
       expect(page).to have_content("Reason is Edited")
+    end
+
+    it "should not be editable by non authorized user" do
+      logout(:user)
+      unauthorized_user = FactoryGirl.create(:unauthorized_user)
+      login_as(unauthorized_user, :scope => :user)
+
+      visit edit_request_path(@edit_request)
+      expect(current_path).to eq(root_path)
     end
   end
 

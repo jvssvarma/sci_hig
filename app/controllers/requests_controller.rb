@@ -23,9 +23,12 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    authorize @request
   end
 
   def update
+    authorize @request
+    
     if @request.update request_params
       redirect_to @request, notice: "Your request is update successfully"
     else

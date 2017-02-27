@@ -9,6 +9,7 @@ module Admin
   def self.user_types
     ['AdminUser']
   end
+  
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_user!
     before_action :authenticate_admin
