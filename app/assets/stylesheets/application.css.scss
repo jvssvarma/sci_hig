@@ -4,6 +4,15 @@
 @import "gritter";
 @import "bourbon";
 
+@font-face {
+  font-family: "Avenir Next Rounded Pro";
+  src: url('/assets/avenir-next-rounded-pro-medium.otf');
+}
+
+body {
+  font-family: "Avenir Next Rounded Pro";
+}
+
 .custom-nav {
   margin-top: 20px;
 }
