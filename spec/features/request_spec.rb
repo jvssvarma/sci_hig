@@ -15,8 +15,21 @@ describe 'navigation' do
     it "has a list of all requests" do
       request1 = FactoryGirl.create(:request)
       request2 = FactoryGirl.create(:another_request)
+      request1.update(user_id: @user.id)
+      request2.update(user_id: @user.id)
       visit requests_path
       expect(page).to have_content(/excuse/)
+    end
+
+    it "should show only the request of the corresponding user" do
+      request1 = Request.create(date: Date.yesterday, reason: "excuse 1 test", user_id: @user.id)
+      request2 = Request.create(date: Date.yesterday, reason: "excuse 2 test", user_id: @user.id)
+
+      random_user = User.create(first_name: "Unauthorized", last_name: "User", email: "unauthorized_user@test.com", password: "asdfasdf", password_confirmation: "asdfasdf")
+      request_from_random_user = Request.create(date: Date.yesterday, reason: "Unauthorized test", user_id: random_user.id)
+
+      visit requests_path
+      expect(page).to_not have_content(/Unauthorized test/)
     end
   end
 
@@ -80,6 +93,7 @@ describe 'navigation' do
   describe "deleting requests" do
     it "can delete requests" do
       @request = FactoryGirl.create(:request)
+      @request.update(user_id: @user.id)
       visit requests_path
 
       click_link("delete_request_#{@request.id}")

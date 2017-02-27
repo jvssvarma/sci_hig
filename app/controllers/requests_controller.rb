@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   before_action :find_request, only: [:show, :edit, :update, :destroy]
 
   def index
-    @requests = Request.all
+    @requests = current_user.requests
   end
 
   def new
@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
 
   def update
     authorize @request
-    
+
     if @request.update request_params
       redirect_to @request, notice: "Your request is update successfully"
     else
