@@ -1,0 +1,7 @@
+<% if flash[:alert] %>
+  <%= js add_gritter(flash[:alert], title: "HIG App Notification", sticky: false, time: 1000, image: :notice) %>
+<% elsif flash[:error] %>
+  <%= js add_gritter(flash[:error], title: "HIG App Notification", sticky: false, time: 1000, image: :notice) %>
+<% else %>
+  <%= js add_gritter(flash[:notice], title: "HIG App Notification", sticky: false, time: 1000, image: :notice) %>
+<% end %>
