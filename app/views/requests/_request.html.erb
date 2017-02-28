@@ -12,6 +12,9 @@
     <%= truncate(request.reason) %>
   </td>
   <td>
+    <%= status_look request.status %>
+  </td>
+  <td>
     <%= link_to 'Edit', edit_request_path(request), id: "edit_#{request.id}" %>
   </td>
   <td>
