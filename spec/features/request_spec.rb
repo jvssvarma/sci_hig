@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'navigation' do
   let(:user) { FactoryGirl.create(:user) }
   let(:request) do
-    Request.create(date: Date.today, reason: "Some reason of excuse", user_id: user.id)
+    Request.create(date: Date.today, reason: "Some reason of excuse", user_id: user.id, request_hours: 2.0)
   end
 
   before do
@@ -26,11 +26,11 @@ describe 'navigation' do
     end
 
     it "should show only the request of the corresponding user" do
-      request1 = Request.create(date: Date.yesterday, reason: "excuse 1 test", user_id: user.id)
-      request2 = Request.create(date: Date.yesterday, reason: "excuse 2 test", user_id: user.id)
+      request1 = Request.create(date: Date.yesterday, reason: "excuse 1 test", user_id: user.id, request_hours: 2.0)
+      request2 = Request.create(date: Date.yesterday, reason: "excuse 2 test", user_id: user.id, request_hours: 2.0)
 
       random_user = User.create(first_name: "Unauthorized", last_name: "User", email: "unauthorized_user@test.com", password: "asdfasdf", password_confirmation: "asdfasdf")
-      request_from_random_user = Request.create(date: Date.yesterday, reason: "Unauthorized test", user_id: random_user.id)
+      request_from_random_user = Request.create(date: Date.yesterday, reason: "Unauthorized test", user_id: random_user.id, request_hours: 2.0)
 
       visit requests_path
       expect(page).to_not have_content(/Unauthorized test/)
@@ -45,14 +45,15 @@ describe 'navigation' do
     it "should be able to fill form for request" do
       fill_in 'request[date]', with: Date.today
       fill_in 'request[reason]', with: "Reason for request"
-      click_on "Submit"
+      fill_in 'request[request_hours]', with: 2
 
-      expect(page).to have_content("Reason for request")
+      expect { click_on "Submit" }.to change(Request, :count).by(1)
     end
 
     it "must have a user associated" do
       fill_in 'request[date]', with: Date.today
       fill_in 'request[reason]', with: "User Association"
+      fill_in 'request[request_hours]', with: 2
       click_on "Submit"
 
       expect(User.last.requests.last.reason).to eq("User Association")

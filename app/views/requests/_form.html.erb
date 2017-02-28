@@ -12,6 +12,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :request_hours, class: "col-sm-2 control-label" %>
+    <%= f.number_field :request_hours, class: "text_field form-control", step: :any %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :reason, class: "col-sm-2 control-label" %>
     <%= f.text_area :reason, class: "form-control" %>
   </div>

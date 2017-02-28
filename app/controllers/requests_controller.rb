@@ -44,7 +44,7 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:date, :reason, :status)
+    params.require(:request).permit(:date, :reason, :status, :request_hours)
   end
 
   def find_request

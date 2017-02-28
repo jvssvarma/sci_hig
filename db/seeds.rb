@@ -13,10 +13,10 @@ AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_con
 puts "Admin and test users created"
 
 20.times do |request|
-  Request.create!(date: Date.today, reason: " #{request} sample data set 1.", user_id: @user1.id)
-  Request.create!(date: Date.tomorrow, reason: " #{request} sample data set 2.", user_id: @user1.id)
-  Request.create!(date: Date.today+2, reason: " #{request} sample data set 3.", user_id: @user2.id)
-  Request.create!(date: Date.tomorrow+2, reason: " #{request} sample data set 4", user_id: @user2.id)
+  Request.create!(date: Date.today, reason: " #{request} sample data set 1.", user_id: @user1.id, request_hours: 3.5)
+  Request.create!(date: Date.tomorrow, reason: " #{request} sample data set 2.", user_id: @user1.id, request_hours: 2.5)
+  Request.create!(date: Date.today+2, reason: " #{request} sample data set 3.", user_id: @user2.id, request_hours: 1.0)
+  Request.create!(date: Date.tomorrow+2, reason: " #{request} sample data set 4", user_id: @user2.id, request_hours: 3.0)
 end
 
 puts "80 sample data requests created"
