@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   before_action :find_request, only: [:show, :edit, :update, :destroy]
 
   def index
-    @requests = current_user.requests
+    @requests = Request.requests_added_by current_user
   end
 
   def new
