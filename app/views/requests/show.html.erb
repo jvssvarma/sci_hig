@@ -1,1 +1,27 @@
-<%= @request.inspect %>
+<div class="container">
+  <div>
+    <h2><%= @request.reason %></h2>
+  </div>
+
+  <div class="well">
+    <div>
+      <h3><span>Requested Overtime Hours:</span> <%= @request.request_hours.to_f %></h3>
+    </div>
+
+    <div>
+      <h3><span>Requested Employee:</span> <%= @request.user.full_name %></h3>
+    </div>
+
+    <div>
+      <h3><span>Date:</span> <%= @request.date %></h3>
+    </div>
+
+    <div>
+      <h3><span>Current Status:</span> <%= @request.status %></h3>
+    </div>
+    <div>
+      <%= link_to "Edit", edit_request_path(@request), class: "btn btn-primary" if policy(@request).update? %>
+      <%= link_to 'Delete', request_path(@request), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>
