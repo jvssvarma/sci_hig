@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 describe 'navigation' do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:request) do
+    Request.create(date: Date.today, reason: "Some reason of excuse", user_id: user.id)
+  end
+
   before do
-    @user = FactoryGirl.create(:user)
-    login_as(@user, :scope => :user)
+    login_as(user, :scope => :user)
   end
 
   describe "requests index" do
@@ -15,15 +19,15 @@ describe 'navigation' do
     it "has a list of all requests" do
       request1 = FactoryGirl.create(:request)
       request2 = FactoryGirl.create(:another_request)
-      request1.update(user_id: @user.id)
-      request2.update(user_id: @user.id)
+      request1.update(user_id: user.id)
+      request2.update(user_id: user.id)
       visit requests_path
       expect(page).to have_content(/excuse/)
     end
 
     it "should show only the request of the corresponding user" do
-      request1 = Request.create(date: Date.yesterday, reason: "excuse 1 test", user_id: @user.id)
-      request2 = Request.create(date: Date.yesterday, reason: "excuse 2 test", user_id: @user.id)
+      request1 = Request.create(date: Date.yesterday, reason: "excuse 1 test", user_id: user.id)
+      request2 = Request.create(date: Date.yesterday, reason: "excuse 2 test", user_id: user.id)
 
       random_user = User.create(first_name: "Unauthorized", last_name: "User", email: "unauthorized_user@test.com", password: "asdfasdf", password_confirmation: "asdfasdf")
       request_from_random_user = Request.create(date: Date.yesterday, reason: "Unauthorized test", user_id: random_user.id)
@@ -56,14 +60,8 @@ describe 'navigation' do
   end
 
   describe "editing requests" do
-    before do
-      @edit_user = User.create(first_name: "John", last_name: "Test", email: "johntest@test.com", password: "checking", password_confirmation: "checking")
-      login_as(@edit_user, :scope => :user)
-      @edit_request = Request.create(date: Date.tomorrow, reason: "Authorization test", user_id: @edit_user.id)
-    end
-
     it "is editable" do
-      visit edit_request_path(@edit_request)
+      visit edit_request_path(request)
       fill_in 'request[date]', with: Date.today
       fill_in 'request[reason]', with: "Reason is Edited"
       click_on "Submit"
@@ -76,7 +74,7 @@ describe 'navigation' do
       unauthorized_user = FactoryGirl.create(:unauthorized_user)
       login_as(unauthorized_user, :scope => :user)
 
-      visit edit_request_path(@edit_request)
+      visit edit_request_path(request)
       expect(current_path).to eq(root_path)
     end
   end
@@ -92,11 +90,11 @@ describe 'navigation' do
 
   describe "deleting requests" do
     it "can delete requests" do
-      @request = FactoryGirl.create(:request)
-      @request.update(user_id: @user.id)
+      delete_test_request = FactoryGirl.create(:request)
+      delete_test_request.update(user_id: user.id)
       visit requests_path
 
-      click_link("delete_request_#{@request.id}")
+      click_link("delete_request_#{delete_test_request.id}")
       expect(page.status_code).to eq(200)
     end
   end
