@@ -6,6 +6,7 @@ FactoryGirl.define do
   factory :user do
     first_name 'Johnny'
     last_name 'Depp'
+    phone '5555555555'
     email { generate :email }
     password 'asdfasdf'
     password_confirmation 'asdfasdf'
@@ -14,6 +15,7 @@ FactoryGirl.define do
   factory :admin_user, class: "AdminUser" do
     first_name 'Admin'
     last_name 'User'
+    phone "5555555555"
     email { generate :email }
     password 'asdfasdf'
     password_confirmation 'asdfasdf'
@@ -22,6 +24,7 @@ FactoryGirl.define do
   factory :unauthorized_user, class: 'User' do
     first_name 'Unauthorized'
     last_name 'User'
+    phone "5555555555"
     email { generate :email }
     password 'asdfasdf'
     password_confirmation 'asdfasdf'

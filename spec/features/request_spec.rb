@@ -29,7 +29,7 @@ describe 'navigation' do
       request1 = Request.create(date: Date.yesterday, reason: "excuse 1 test", user_id: user.id, request_hours: 2.0)
       request2 = Request.create(date: Date.yesterday, reason: "excuse 2 test", user_id: user.id, request_hours: 2.0)
 
-      random_user = User.create(first_name: "Unauthorized", last_name: "User", email: "unauthorized_user@test.com", password: "asdfasdf", password_confirmation: "asdfasdf")
+      random_user = User.create(first_name: "Unauthorized", last_name: "User", email: "unauthorized_user@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", phone: "5555555555")
       request_from_random_user = Request.create(date: Date.yesterday, reason: "Unauthorized test", user_id: random_user.id, request_hours: 2.0)
 
       visit requests_path

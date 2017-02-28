@@ -6,9 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-@user1 = User.create(email: 'checking1@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'John', last_name: 'Doe')
-@user2 = User.create(email: 'checking2@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', first_name: 'Jane', last_name: 'Mara')
-AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser', first_name: 'Darshan', last_name: 'Patel')
+@user1 = User.create(email: 'checking1@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf',
+                     first_name: 'John', last_name: 'Doe', phone: "4088968055")
+@user2 = User.create(email: 'checking2@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf',
+                     first_name: 'Jane', last_name: 'Mara', phone: "4088968055")
+AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser',
+                     first_name: 'Darshan', last_name: 'Patel', phone: "5102409970")
 
 puts "Admin and test users created"
 
