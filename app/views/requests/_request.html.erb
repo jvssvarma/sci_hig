@@ -15,7 +15,7 @@
     <%= status_look request.status %>
   </td>
   <td>
-    <%= link_to 'Edit', edit_request_path(request), id: "edit_#{request.id}" %>
+    <%= link_to 'Edit', edit_request_path(request), id: "edit_#{request.id}" if policy(request).update? %>
   </td>
   <td>
     <%= link_to 'Delete', request_path(request), method: :delete, data: { confirm: "Are you sure?" }, id: "delete_request_#{request.id}" %>
