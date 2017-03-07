@@ -18,7 +18,7 @@
 ## Custom Notification Rake
 - Iterate over all the employees in the database skipping Admin users
 - Send a message that has instructions and a link
-- This must run on mondays at 5pm
+- This must run on mondays at 5am
 
 # New ToDo's
 - Add Audit Log
