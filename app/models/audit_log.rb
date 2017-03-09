@@ -6,6 +6,6 @@ class AuditLog < ApplicationRecord
   private
 
   def set_defaults
-    self.start_date ||= Date.yesterday
+    self.start_date ||= Date.today.beginning_of_week
   end
 end

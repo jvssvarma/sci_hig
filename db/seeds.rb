@@ -13,7 +13,9 @@
 AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser',
                      first_name: 'Darshan', last_name: 'Patel', phone: "5102409970")
 
-puts "Admin and test users created"
+80.times do |auditlog|
+ AuditLog.create!(user_id: User.last.id, status: 0, start_date: Date.today.beginning_of_week)
+end
 
 20.times do |request|
   Request.create!(date: Date.today, reason: " #{request} sample data set 1.", user_id: @user1.id, request_hours: 3.5)
@@ -22,4 +24,4 @@ puts "Admin and test users created"
   Request.create!(date: Date.tomorrow+2, reason: " #{request} sample data set 4", user_id: @user2.id, request_hours: 3.0)
 end
 
-puts "80 sample data requests created"
+puts "Admin and test users created. 80 sample requests and audit logs created"
