@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
-  resources :requests
+  resources :requests do
+    member do
+      get :approve
+    end
+  end
   devise_for :users, skip: [:registrations]
   root "welcome#index"
 end

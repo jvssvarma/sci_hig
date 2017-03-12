@@ -9,10 +9,10 @@
         <p><span class="post-details">Reason:</span><%= truncate(pending_request.reason, length: 25) %></p>
         <div class="row">
           <div class="col-md-6 column">
-            <%= link_to "Approve", root_path, class: 'btn btn-success btn-block' %>
+            <%= link_to "Approve", approve_request_path(pending_request), class: 'btn btn-success btn-block', id: "#{pending_request.id}_approve" %>
           </div>
           <div class="col-md-6 column">
-            <%= link_to "Review", root_path, class: 'btn btn-danger btn-block' %>
+            <%= link_to "Review", edit_request_path(pending_request), class: 'btn btn-danger btn-block' %>
           </div>
         </div>
       </div>

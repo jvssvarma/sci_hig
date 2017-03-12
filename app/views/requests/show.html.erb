@@ -21,7 +21,7 @@
     </div>
     <div>
       <%= link_to "Edit", edit_request_path(@request), class: "btn btn-primary" if policy(@request).update? %>
-      <%= link_to 'Delete', request_path(@request), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      <%= link_to 'Delete', request_path(@request), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" if !policy(@request).destroy? %>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :find_request, only: [:show, :edit, :update, :destroy]
+  before_action :find_request, only: [:show, :edit, :update, :destroy, :approve]
 
   def index
     @requests = Request.requests_added_by(current_user).page(params[:page]).per(10)
@@ -11,7 +11,6 @@ class RequestsController < ApplicationController
 
   def create
     @request = current_user.requests.build(request_params)
-
     if @request.save
       redirect_to @request, notice: "Your request is added successfully"
     else
@@ -28,7 +27,6 @@ class RequestsController < ApplicationController
 
   def update
     authorize @request
-
     if @request.update request_params
       redirect_to @request, notice: "Your request is update successfully"
     else
@@ -37,8 +35,15 @@ class RequestsController < ApplicationController
   end
 
   def destroy
+    authorize @request
     @request.destroy
     redirect_to requests_path, notice: "Request deleted successfully"
+  end
+
+  def approve
+    authorize @request
+    @request.approved!
+    redirect_to root_path, notice: "Request is approved."
   end
 
   private

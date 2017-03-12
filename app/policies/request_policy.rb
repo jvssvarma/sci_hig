@@ -4,6 +4,14 @@ class RequestPolicy < ApplicationPolicy
     return true if user_or_admin && !record_approved?
   end
 
+  def destroy?
+    return true if record_approved?
+  end
+
+  def approve?
+    admin?
+  end
+
   private
 
   def user_or_admin
