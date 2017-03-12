@@ -21,5 +21,4 @@
 - This must run on mondays at 5am
 
 # New ToDo's
-- Add Audit Log
 - Document if Employee did not log overtime
