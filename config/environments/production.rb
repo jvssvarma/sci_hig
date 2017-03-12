@@ -19,6 +19,7 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.action_mailer.default_url_options = { :host => 'immense-taiga-45522.herokuapp.com/'}
   config.active_record.dump_schema_after_migration = false
   config.serve_static_assets = true
   config.assets.digest = true
