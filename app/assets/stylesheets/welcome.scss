@@ -5,15 +5,15 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding: 15px;
+  padding: 20px;
 }
 
-.approvals {
+.request_approvals {
   .welcome-page-block {
-    background-color: #87314e;
+    background-color: #252c41;
   }
 }
-.submissions {
+.audit_submissions {
   .welcome-page-block {
     background-color: #311e3e;
   }
@@ -21,6 +21,13 @@
 
 .welcome-page-block {
   color: white;
-  margin: 15px;
+  margin: 10px 45px;
   padding: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.post-details {
+  font-weight: 700;
 }

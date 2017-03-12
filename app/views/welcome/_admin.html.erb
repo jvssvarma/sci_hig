@@ -1,23 +1,25 @@
 <div class="container-fluid">
-  <div class="pending-posts approvals row">
-    <div class="welcome-page-block col-md-3">
-      <h1>Hello</h1>
-    </div>
-    <div class="welcome-page-block col-md-3">
-      <h1>Hello</h1>
-    </div>
-    <div class="welcome-page-block col-md-3">
-      <h1>Hello</h1>
-    </div>
-    <div class="welcome-page-block col-md-3">
-      <h1>Hello</h1>
-    </div>
-    <div class="welcome-page-block col-md-3">
-      <h1>Hello</h1>
-    </div>
+  <!-- Pending Requests -->
+  <div class="pending-posts request_approvals row">
+    <h2>Requests Pending Approval</h2>
+    <% @pending_requests.each do |pending_request| %>
+      <div class="welcome-page-block col-md-3">
+        <h5><%= pending_request.user.full_name %></h5>
+        <p><span class="post-details">Submitted:</span><%= pending_request.date %></p>
+        <p><span class="post-details">Reason:</span><%= truncate(pending_request.reason, length: 25) %></p>
+        <div class="row">
+          <div class="col-md-6 column">
+            <%= link_to "Approve", root_path, class: 'btn btn-success btn-block' %>
+          </div>
+          <div class="col-md-6 column">
+            <%= link_to "Review", root_path, class: 'btn btn-danger btn-block' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="pending-posts submissions row">
+  <div class="pending-posts audit_submissions row">
     <div class="welcome-page-block col-md-3">
       <p>Just testing</p>
     </div>
