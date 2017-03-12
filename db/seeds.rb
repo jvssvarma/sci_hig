@@ -10,7 +10,7 @@
                      first_name: 'John', last_name: 'Doe', phone: "4088968055")
 @employee2 = Employee.create(email: 'checking2@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf',
                      first_name: 'Jane', last_name: 'Mara', phone: "4088968055")
-AdminUser.create(email: 'adminemployee@hig.com', password: 'adminemployee', password_confirmation: 'adminemployee',
+AdminUser.create(email: 'varma.santosh@outlook.com', password: 'adminuser', password_confirmation: 'adminuser',
                      first_name: 'Darshan', last_name: 'Patel', phone: "5102409970")
 
 AuditLog.create!(user_id: @employee1.id, status: 0, start_date: 1.week.ago.beginning_of_week)
