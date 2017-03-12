@@ -80,15 +80,6 @@ describe 'navigation' do
     end
   end
 
-  describe "creating new requests from home path" do
-    it "using link to new requests" do
-      visit root_path
-
-      click_link("Add Request")
-      expect(page.status_code).to eq(200)
-    end
-  end
-
   describe "deleting requests" do
     it "can delete requests" do
       delete_test_request = FactoryGirl.create(:request)
