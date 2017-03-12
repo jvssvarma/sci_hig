@@ -11,11 +11,17 @@
 .request_approvals {
   .welcome-page-block {
     background-color: #252c41;
+    &:hover {
+      background-color: #364e96;
+    }
   }
 }
 .audit_submissions {
   .welcome-page-block {
     background-color: #311e3e;
+    &:hover {
+      background-color: #87314e;
+    }
   }
 }
 
