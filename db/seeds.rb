@@ -13,10 +13,10 @@
 AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser',
                      first_name: 'Darshan', last_name: 'Patel', phone: "5102409970")
 
-40.times do |auditlog|
- AuditLog.create!(user_id: @user1.id, status: 0, start_date: Date.today.beginning_of_week)
- AuditLog.create!(user_id: @user2.id, status: 0, start_date: Date.today.beginning_of_week)
-end
+AuditLog.create!(user_id: @user1.id, status: 0, start_date: 1.week.ago.beginning_of_week)
+AuditLog.create!(user_id: @user2.id, status: 0, start_date: 1.week.ago.beginning_of_week)
+AuditLog.create!(user_id: @user1.id, status: 0, start_date: 3.week.ago.beginning_of_week)
+AuditLog.create!(user_id: @user2.id, status: 0, start_date: 3.week.ago.beginning_of_week)
 
 20.times do |request|
   Request.create!(date: Date.today, reason: " #{request} Tacos thundercats +1 post-ironic seitan prism bitters, etsy schlitz meh. Heirloom hot chicken tilde occupy. Keffiyeh kickstarter marfa hot chicken, thundercats austin succulents pug biodiesel craft beer squid hella chambray. Four dollar toast hammock pop-up +1 kickstarter fashion axe. Lumbersexual man braid brunch, bespoke coloring book blog scenester typewriter beard. Authentic raclette locavore, kickstarter iPhone hashtag tacos trust fund pop-up vexillologist DIY art party marfa put a bird on it selvage. Sartorial cardigan listicle, crucifix wayfarers direct trade cray pickled fap hell of.", user_id: @user1.id, request_hours: 3.5)

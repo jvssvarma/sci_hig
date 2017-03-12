@@ -15,5 +15,15 @@ describe 'navigate' do
       click_on("#{request.id}_approve")
       expect(request.reload.status).to eq('approved')
     end
+
+    it "allows the employee to change audit log status" do
+      audit_log = FactoryGirl.create(:audit_log)
+      user = FactoryGirl.create(:user)
+      login_as(user, :scope => :user)
+      audit_log.update(user_id: user.id)
+      visit root_path
+      click_on("#{audit_log.id}_confirm")
+      expect(audit_log.reload.status).to eq('confirmed')
+    end
   end
 end
