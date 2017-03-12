@@ -23,6 +23,7 @@ gem 'bourbon'
 gem 'pundit', '~> 1.1'
 gem 'twilio-ruby', '~> 4.13'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platform: :mri
