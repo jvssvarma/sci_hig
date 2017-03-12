@@ -9,7 +9,7 @@ class Request < ApplicationRecord
   private
 
   def update_audit_log
-    audit_log = AuditLog.where(user_id: self.user.id, start_date: (1.week.ago.beginning_of_week)).last
+    audit_log = AuditLog.where(user_id: self.user.id, start_date: (1.week.ago.beginning_of_week..self.date)).last
     audit_log.confirmed!
   end
 end
