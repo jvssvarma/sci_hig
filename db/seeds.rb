@@ -13,8 +13,9 @@
 AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser',
                      first_name: 'Darshan', last_name: 'Patel', phone: "5102409970")
 
-80.times do |auditlog|
- AuditLog.create!(user_id: User.last.id, status: 0, start_date: Date.today.beginning_of_week)
+40.times do |auditlog|
+ AuditLog.create!(user_id: @user1.id, status: 0, start_date: Date.today.beginning_of_week)
+ AuditLog.create!(user_id: @user2.id, status: 0, start_date: Date.today.beginning_of_week)
 end
 
 20.times do |request|
