@@ -24,9 +24,11 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="requests">
     <%= render @requests %>
   </tbody>
 </table>
 
-<%= paginate @requests %>
+<div id="paginator">
+  <%= paginate @requests, remote: true %>
+</div>
