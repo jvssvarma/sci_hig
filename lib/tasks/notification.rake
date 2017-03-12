@@ -6,6 +6,7 @@ namespace :notification do
       notification_message = "Please log into the EOM dashboard to request or confirm hours for last week: http://immense-taiga-45522.herokuapp.com/"
 
       employees.each do |employee|
+        AuditLog.create!(user_id: employee.id)
         SmsMessage.send_sms(number: employee.phone, message: notification_message)
       end
     end
