@@ -4,12 +4,18 @@ class Request < ApplicationRecord
   validates :request_hours, numericality: { greater_than: 0.0 }
   enum status: { submitted: 0, approved: 1, rejected: 2 }
   scope :requests_added_by, -> (user) { where(user_id: user.id) }
-  after_save :update_audit_log
+  after_save :confirm_audit_log, if: :submitted?
+  after_save :unconfirm_audit_log, if: :rejected?
 
   private
 
-  def update_audit_log
-    audit_log = AuditLog.where(user_id: self.user.id, start_date: (1.week.ago.beginning_of_week..self.date)).last
+  def confirm_audit_log
+    audit_log = AuditLog.where(user_id: self.user_id, start_date: (1.week.ago.beginning_of_week..self.date)).last
     audit_log.confirmed! if audit_log
+  end
+
+  def unconfirm_audit_log
+    audit_log = AuditLog.where(user_id: self.user_id, start_date: (1.week.ago.beginning_of_week..self.date)).last
+    audit_log.pending! if audit_log
   end
 end
