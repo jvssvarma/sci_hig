@@ -25,6 +25,7 @@ gem 'twilio-ruby', '~> 4.13'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'kaminari'
 gem 'rollbar'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug', platform: :mri
