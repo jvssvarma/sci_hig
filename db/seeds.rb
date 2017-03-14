@@ -13,9 +13,9 @@
 AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser',
                      first_name: 'Vicky', last_name: 'Delgado', phone: "5102409970")
 
-AuditLog.create!(user_id: @employee1.id, status: 0, start_date: 1.week.ago.beginning_of_week)
+AuditLog.create!(user_id: @employee1.id, status: 0, start_date: Date.today.beginning_of_week)
 AuditLog.create!(user_id: @employee2.id, status: 0, start_date: 1.week.ago.beginning_of_week)
-AuditLog.create!(user_id: @employee1.id, status: 0, start_date: 3.week.ago.beginning_of_week)
+AuditLog.create!(user_id: @employee1.id, status: 0, start_date: 2.week.ago.beginning_of_week)
 AuditLog.create!(user_id: @employee2.id, status: 0, start_date: 3.week.ago.beginning_of_week)
 
 20.times do |request|

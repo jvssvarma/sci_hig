@@ -27,7 +27,7 @@ RSpec.describe AuditLog, type: :model do
 
     it "must have start_date as yesterday by default" do
       audit_log1 = AuditLog.create(user_id: User.last.id)
-      expect(audit_log1.start_date).to eq(1.week.ago.beginning_of_week)
+      expect(audit_log1.start_date).to eq(Date.today.beginning_of_week)
     end
   end
 end

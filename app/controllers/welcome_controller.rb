@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
       @pending_requests = Request.submitted
       @recent_audits = AuditLog.last(10)
     else
-      @pending_audit_confirmations = current_user.audit_logs.pending
+      @pending_audit_confirmations = current_user.audit_logs.pending.by_start_date
     end
   end
 end

@@ -10,12 +10,12 @@ class Request < ApplicationRecord
   private
 
   def confirm_audit_log
-    audit_log = AuditLog.where(user_id: self.user_id, start_date: (1.week.ago.beginning_of_week..self.date)).last
+    audit_log = AuditLog.where(user_id: self.user_id, start_date: (1.week.ago.beginning_of_week..1.week.ago.end_of_week)).last
     audit_log.confirmed! if audit_log
   end
 
   def unconfirm_audit_log
-    audit_log = AuditLog.where(user_id: self.user_id, start_date: (1.week.ago.beginning_of_week..self.date)).last
+    audit_log = AuditLog.where(user_id: self.user_id, start_date: (1.week.ago.beginning_of_week..1.week.ago.end_of_week)).last
     audit_log.pending! if audit_log
   end
 end
