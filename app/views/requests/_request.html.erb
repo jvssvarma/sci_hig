@@ -1,17 +1,11 @@
 <tr>
   <td>
-    <%= request.id %>
-  </td>
-  <td>
-    <%= request.user.full_name %>
-  </td>
-  <td>
     <%= request.date %>
   </td>
   <td>
     <%= request.request_hours.to_f %>
   </td>
-  <td>
+  <td class="hidden-xs">
     <%= link_to truncate(request.reason), request %>
   </td>
   <td>
