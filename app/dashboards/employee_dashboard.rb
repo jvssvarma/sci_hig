@@ -17,6 +17,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime.with_options(searchable: false),
     type: Field::String.with_options(searchable: false),
     phone: Field::String.with_options(searchable: false),
+    ssn: Field::Number.with_options(searchable: true),
+    property: Field::String.with_options(searchable: true),
   }.freeze
 
   COLLECTION_ATTRIBUTES = [
@@ -25,6 +27,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     :last_name,
     :email,
     :phone,
+    :ssn,
+    :property,
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
@@ -33,6 +37,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     :phone,
     :first_name,
     :last_name,
+    :ssn,
+    :property,
     :type,
     :sign_in_count,
     :current_sign_in_at,
@@ -49,6 +55,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     :email,
     :password,
     :phone,
+    :ssn,
+    :property,
     :type,
   ].freeze
 end

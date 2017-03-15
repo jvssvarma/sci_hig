@@ -17,8 +17,19 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
     end
 
+    it "cannot be created without ssn and company details" do
+      @user.ssn = nil
+      @user.property = nil
+      expect(@user).to_not be_valid
+    end
+
     it "phone must have only integers and must have 10 characters" do
       @user.phone = '12345678910'
+      expect(@user).to_not be_valid
+    end
+
+    it "ssn must have only integers and must have 4 characters" do
+      @user.ssn = '12345'
       expect(@user).to_not be_valid
     end
   end

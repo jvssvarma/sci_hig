@@ -10,6 +10,8 @@ FactoryGirl.define do
     email { generate :email }
     password 'asdfasdf'
     password_confirmation 'asdfasdf'
+    property 'Hotel EReal'
+    ssn 1234
   end
 
   factory :admin_user, class: "AdminUser" do
@@ -19,6 +21,8 @@ FactoryGirl.define do
     email { generate :email }
     password 'asdfasdf'
     password_confirmation 'asdfasdf'
+    property 'Hotel EReal'
+    ssn 1234
   end
 
   factory :unauthorized_user, class: 'User' do
@@ -28,5 +32,7 @@ FactoryGirl.define do
     email { generate :email }
     password 'asdfasdf'
     password_confirmation 'asdfasdf'
+    property 'Hotel EReal'
+    ssn 1234
   end
 end

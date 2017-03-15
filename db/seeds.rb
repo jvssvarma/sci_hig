@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 @employee1 = Employee.create(email: 'checking1@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf',
-                     first_name: 'John', last_name: 'Doe', phone: "4088968055")
+                     first_name: 'John', last_name: 'Doe', phone: "4088968055", property: 'Hotel EReal', ssn: 1234)
 @employee2 = Employee.create(email: 'checking2@test.com', password: 'asdfasdf', password_confirmation: 'asdfasdf',
-                     first_name: 'Jane', last_name: 'Mara', phone: "4088968055")
+                     first_name: 'Jane', last_name: 'Mara', phone: "4088968055", property: 'Hotel EReal', ssn: 1234)
 AdminUser.create(email: 'adminuser@hig.com', password: 'adminuser', password_confirmation: 'adminuser',
-                     first_name: 'Vicky', last_name: 'Delgado', phone: "5102409970")
+                     first_name: 'Vicky', last_name: 'Delgado', phone: "5102409970", property: 'Hotel EReal', ssn: 1234)
 
 AuditLog.create!(user_id: @employee1.id, status: 0, start_date: Date.today.beginning_of_week)
 AuditLog.create!(user_id: @employee2.id, status: 0, start_date: 1.week.ago.beginning_of_week)
