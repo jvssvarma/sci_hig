@@ -3,10 +3,10 @@
     <%= request.date %>
   </td>
   <td>
-    <%= request.request_hours.to_f %>
+    <%= request.day_hours.to_f %>
   </td>
   <td class="hidden-xs">
-    <%= link_to truncate(request.reason), request %>
+    <%= link_to truncate(request.work_summary), request %>
   </td>
   <td>
     <%= status_look request.status %>

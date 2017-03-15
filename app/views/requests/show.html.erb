@@ -1,11 +1,11 @@
 <div class="container">
   <div>
-    <h2><%= @request.reason %></h2>
+    <h2><%= @request.work_summary %></h2>
   </div>
 
   <div class="well">
     <div>
-      <h3><span>Requested Overtime Hours:</span> <%= @request.request_hours.to_f %></h3>
+      <h3><span>Requested Overtime Hours:</span> <%= @request.day_hours.to_f %></h3>
     </div>
 
     <div>

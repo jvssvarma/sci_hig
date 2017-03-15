@@ -7,7 +7,7 @@
       <div class="welcome-page-block col-md-3">
         <h5><%= pending_request.user.full_name %></h5>
         <p><span class="post-details">Submitted:</span><%= pending_request.date %></p>
-        <p><span class="post-details">Reason:</span><%= truncate(pending_request.reason, length: 25) %></p>
+        <p><span class="post-details">Work Summary:</span><%= truncate(pending_request.work_summary, length: 25) %></p>
         <div class="row">
           <div class="col-md-6 column">
             <%= link_to "Approve", approve_request_path(pending_request), class: 'btn btn-success btn-block', id: "#{pending_request.id}_approve" %>

@@ -12,13 +12,18 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :request_hours, class: "col-sm-2 control-label" %>
-    <%= f.number_field :request_hours, class: "text_field form-control", step: :any %>
+    <%= f.label :in_time, class: "col-sm-2 control-label" %>
+    <%= f.datetime_field :in_time, class: "text_field form-control", step: :any %>
   </div>
 
   <div class="form-group">
-    <%= f.label :reason, class: "col-sm-2 control-label" %>
-    <%= f.text_area :reason, class: "form-control" %>
+    <%= f.label :out_time, class: "col-sm-2 control-label" %>
+    <%= f.datetime_field :out_time, class: "text_field form-control", step: :any %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :work_summary, "Enter pass on messages & shift issues here..", class: "col-sm-2 control-label" %>
+    <%= f.text_area :work_summary, class: "form-control" %>
   </div>
 
   <% if current_user.type == "AdminUser" %>

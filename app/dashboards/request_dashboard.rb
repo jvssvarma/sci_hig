@@ -11,7 +11,10 @@ class RequestDashboard < Administrate::BaseDashboard
     user: Field::BelongsTo.with_options(searchable: true),
     id: Field::Number.with_options(searchable: false),
     date: Field::DateTime,
-    reason: Field::Text.with_options(searchable: true),
+    work_summary: Field::Text.with_options(searchable: true),
+    in_time: Field::DateTime.with_options(searchable: false),
+    out_time: Field::DateTime.with_options(searchable: false),
+    day_hours: Field::String.with_options(searchable: false),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
     status: Field::Select.with_options(collection: Request.statuses.keys),
@@ -25,8 +28,9 @@ class RequestDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :user,
     :date,
-    :reason,
+    :work_summary,
     :status,
+    :day_hours,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,7 +40,10 @@ class RequestDashboard < Administrate::BaseDashboard
     :status,
     :id,
     :date,
-    :reason,
+    :work_summary,
+    :in_time,
+    :out_time,
+    :day_hours,
     :created_at,
     :updated_at,
   ].freeze
@@ -47,8 +54,10 @@ class RequestDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :user,
     :date,
-    :reason,
+    :work_summary,
     :status,
+    :in_time,
+    :out_time,
   ].freeze
 
   # Overwrite this method to customize how requests are displayed
