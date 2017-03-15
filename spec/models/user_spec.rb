@@ -28,4 +28,15 @@ RSpec.describe User, type: :model do
       expect(@user.full_name).to eq("#{@user.last_name.upcase}, #{@user.first_name.upcase}")
     end
   end
+
+  describe "must have relation between managers and employees" do
+    it "with admins associated to multiple employees" do
+      employee1 = FactoryGirl.create(:user)
+      employee2 = FactoryGirl.create(:user)
+      admin = FactoryGirl.create(:admin_user)
+      StaffMember.create!(user_id: admin.id, staff_member_id: employee1.id)
+      StaffMember.create!(user_id: admin.id, staff_member_id: employee2.id)
+      expect(admin.staff_members.count).to eq(2)
+    end
+  end
 end
