@@ -5,7 +5,7 @@ namespace :payroll do
       employees = Employee.all
       employees.each do |employee|
         payroll_records = PayrollRecord.all
-        added_records = PayrollRecord.where(start_date: Date.yesterday.beginning_of_week, end_date: Date.yesterday.end_of_week, user_id: employee.id)
+        added_records = PayrollRecord.where(start_date: 1.week.ago.beginning_of_week, end_date: 1.week.ago.end_of_week, user_id: employee.id)
         if (payroll_records & added_records).empty?
           payroll_week_hours = Request.where(status: 'approved', user_id: employee.id, date: (1.week.ago.beginning_of_week..1.week.ago.end_of_week)).map { |e| e.day_hours  }.inject(0,&:+)
           if payroll_week_hours > 40
@@ -13,7 +13,7 @@ namespace :payroll do
           else
             week_salary = employee.hourly_rate*payroll_week_hours
           end
-          PayrollRecord.create!(user_id: employee.id, start_date: Date.yesterday.beginning_of_week, end_date: Date.yesterday.end_of_week, hours: payroll_week_hours, amount: week_salary)
+          PayrollRecord.create!(user_id: employee.id, start_date: 1.week.ago.beginning_of_week, end_date: 1.week.ago.end_of_week, hours: payroll_week_hours, amount: week_salary)
         end
       end
     end
