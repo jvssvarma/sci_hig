@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :requests
     resources :admin_users
     resources :employees
+    resources :payroll_records
     root to: "users#index"
   end
 

@@ -19,6 +19,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     phone: Field::String.with_options(searchable: false),
     ssn: Field::Number.with_options(searchable: true),
     property: Field::String.with_options(searchable: true),
+    hourly_rate: Field::String.with_options(searchable: false),
+    overtime_rate: Field::String.with_options(searchable: false),
   }.freeze
 
   COLLECTION_ATTRIBUTES = [
