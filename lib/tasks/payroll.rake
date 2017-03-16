@@ -1,7 +1,7 @@
 namespace :payroll do
   desc "Calculate hours and salary for the payroll period"
   task calculate: :environment do
-    if Time.now.thursday?
+    if Time.now.tuesday?
       employees = Employee.all
       employees.each do |employee|
         payroll_records = PayrollRecord.all
