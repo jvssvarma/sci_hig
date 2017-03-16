@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315081216) do
+ActiveRecord::Schema.define(version: 20170316022415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20170315081216) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["user_id"], name: "index_audit_logs_on_user_id", using: :btree
+  end
+
+  create_table "payroll_records", force: :cascade do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.decimal  "hours"
+    t.decimal  "amount"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payroll_records_on_user_id", using: :btree
   end
 
   create_table "requests", force: :cascade do |t|
@@ -71,6 +82,8 @@ ActiveRecord::Schema.define(version: 20170315081216) do
     t.string   "phone"
     t.string   "property"
     t.integer  "ssn"
+    t.decimal  "hourly_rate"
+    t.decimal  "overtime_rate"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -78,5 +91,6 @@ ActiveRecord::Schema.define(version: 20170315081216) do
   end
 
   add_foreign_key "audit_logs", "users"
+  add_foreign_key "payroll_records", "users"
   add_foreign_key "requests", "users"
 end

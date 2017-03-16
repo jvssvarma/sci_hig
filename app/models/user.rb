@@ -9,7 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   PHONE_REGEX = /\A[0-9]*\Z/
-  validates_presence_of :first_name, :last_name, :phone, :property, :ssn
+  validates_presence_of :first_name, :last_name, :phone, :property, :ssn, :hourly_rate, :overtime_rate
   validates_format_of :phone, with: PHONE_REGEX
   validates :phone, length: { is: 10 }
   validates_numericality_of :ssn
