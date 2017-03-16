@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :requests
   has_many :audit_logs
+  has_many :payroll_records
   has_many :staff_members_associations, class_name: 'StaffMember'
   has_many :staff_members, through: :staff_members_associations
   # Include default devise modules. Others available are:
