@@ -1,4 +1,6 @@
 # Santa Clara Investments and Hotel Investments Group Employee Overtime Tracker
+- Sample Admin ID: adminuser@hig.com, Password: adminuser
+- Sample User ID: checking1@test.com, Password: asdfasdf
 
 ## Features
 - Approve Overtime requests
